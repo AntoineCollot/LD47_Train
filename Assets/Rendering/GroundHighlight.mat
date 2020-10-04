@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
+  m_Name: GroundHighlight
+  m_Shader: {fileID: 4800000, guid: b2f671d48d54d014998ba7682eae7067, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -29,20 +29,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Freq: 0.3
-    - _Highlight: 0.276
+    - _Highlight: 1
     - _HighlightColThreshold: 0.53
-    - _HighlightColThresholdHigh: 0.655
-    - _HighlightColThresholdLow: 0.496
+    - _HighlightColThresholdHigh: 0.581
+    - _HighlightColThresholdLow: 0.488
+    - _HighlightIntensityHigh: 1
     - _LightTreshold: 0.667
     - _MiddleTreshold: 0.393
-    - _NoiseSpeedX: -3
+    - _NoiseSpeedX: -2
     - _NoiseSpeedY: 0.5
     - _NoiseSpeedZ: -0.5
     m_Colors:
     - _Color: {r: 0.3160903, g: 0.41509432, b: 0.31523672, a: 1}
     - _DarkColor: {r: 0.509434, g: 0.48492348, b: 0.38688147, a: 1}
     - _HighlightColHigh: {r: 1, g: 0.6460277, b: 0, a: 1}
-    - _HighlightColLow: {r: 0, g: 0, b: 0, a: 1}
+    - _HighlightColLow: {r: 0.1509434, g: 0.13144086, b: 0.0761837, a: 1}
     - _HighlightColor: {r: 0.990566, g: 0.7582324, b: 0.014017418, a: 1}
     - _HighlightColorHigh: {r: 1, g: 0.76081026, b: 0, a: 1}
     - _HighlightColorLow: {r: 0.4339623, g: 0.4174763, b: 0.3050018, a: 1}

@@ -8,7 +8,7 @@ public class TileModels : MonoBehaviour
     [SerializeField] Transform railStraightPrefab = null;
     [SerializeField] Transform railTurnPrefab = null;
     Transform instancedRail;
-    RailType currentType;
+    RailType currentType = RailType.None;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +68,8 @@ public class TileModels : MonoBehaviour
                 instancedRail = Instantiate(railTurnPrefab, transform);
                 break;
         }
+
+        currentType = railType;
     }
 
     void RotateRailModel(RailType railType)

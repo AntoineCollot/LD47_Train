@@ -27,13 +27,23 @@ public class RailWalkerLeader : RailWalker
 
             //Find the next tile
             currentCoords = TileMap.Instance.GetNextTileCoords(currentCoords, ref entryDirection);
+
+            //Make sure it's a valid path
+            if(TileMap.Instance.GetTile(currentCoords).GetOutputDirection(entryDirection)==Direction.None)
+            {
+                GameManager.Instance.GameOver("Rail path broken");
+            }
+
             progress %= 1;
         }
     }
 
     IEnumerator WalkRail()
     {
+        onNewCoords.Invoke(currentCoords);
+
         TileRail tile = TileMap.Instance.GetTile(currentCoords);
+        tile.somethingOnRailState.Add(isOnRailToken);
         goingReverse = tile.IsGoingReverse(entryDirection);
         while (progress < 1)
         {
@@ -41,5 +51,6 @@ public class RailWalkerLeader : RailWalker
 
             yield return null;
         }
+        tile.somethingOnRailState.Remove(isOnRailToken);
     }
 }

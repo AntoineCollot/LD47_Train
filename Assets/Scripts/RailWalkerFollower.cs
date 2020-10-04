@@ -7,6 +7,7 @@ public class RailWalkerFollower : RailWalker
     [Header("Following")]
     [SerializeField] RailWalker followTarget = null;
     [SerializeField] float progressDelay = 1;
+    TileRail lastTile;
 
     // Update is called once per frame
     void Update()
@@ -38,6 +39,15 @@ public class RailWalkerFollower : RailWalker
 
         //Place ourself into this tile
         TileRail tile = TileMap.Instance.GetTile(currentCoords);
+        if (tile != lastTile)
+        {
+            tile.somethingOnRailState.Add(isOnRailToken);
+            if (lastTile != null)
+                lastTile.somethingOnRailState.Remove(isOnRailToken);
+            lastTile = tile;
+
+            onNewCoords.Invoke(currentCoords);
+        }
 
         //We are going the opposite way that we are doing the search, so invert it
         goingReverse = !tile.IsGoingReverse(entryDirection);

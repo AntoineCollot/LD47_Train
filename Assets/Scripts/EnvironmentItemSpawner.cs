@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnvironmentItemSpawner : MonoBehaviour
 {
-    [SerializeField] EnvironmentItem[] items;
+    [SerializeField] EnvironmentItem[] items=null;
 
-    [SerializeField] AnimationCurve itemSpawnCountCurve;
+    [SerializeField] AnimationCurve itemSpawnCountCurve = null;
     [SerializeField,Range(0,1)] float spawnableDistFromCenter = 0.8f;
 
     // Start is called before the first frame update

@@ -109,4 +109,26 @@ public class TileMap : MonoBehaviour
     {
         return tiles[coords.x, coords.y];
     }
+
+    public Vector2Int GetRandomTileCoords()
+    {
+        return new Vector2Int(Random.Range(0, mapSize.x), Random.Range(0, mapSize.y));
+    }
+
+    public Vector2Int GetRandomTileCoordsNotEdge()
+    {
+        return new Vector2Int(Random.Range(1, mapSize.x-1), Random.Range(1, mapSize.y-1));
+    }
+}
+
+public struct SpawnedModel
+{
+    public Vector2Int coords;
+    public GameObject model;
+
+    public SpawnedModel(Vector2Int coords, GameObject model)
+    {
+        this.coords = coords;
+        this.model = model;
+    }
 }

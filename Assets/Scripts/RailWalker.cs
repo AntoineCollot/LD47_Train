@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class RailWalker : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public abstract class RailWalker : MonoBehaviour
     public Vector2Int currentCoords;
     public Direction entryDirection;
     public bool goingReverse { get; protected set; }
+    protected EvolvingStateToken isOnRailToken = new EvolvingStateToken(true);
+    public class CoordsEvent : UnityEvent<Vector2Int> { }
+    public CoordsEvent onNewCoords = new CoordsEvent();
 
     public float EffectiveProgress
     {
