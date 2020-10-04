@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c310b6917a4c4a92590dd124932b6, type: 3}
+  m_Name: Rock0 Item
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5627097949511243278, guid: d903706fa11a59b46bcb44bd8740852d, type: 3}
+  probability: 1
+  minScale: 0.8
+  maxScale: 1.2
+  rotateZOnly: 0
+  applyWind: 0
