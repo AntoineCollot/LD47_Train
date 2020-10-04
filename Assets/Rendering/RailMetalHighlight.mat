@@ -91,6 +91,6 @@ Material:
     m_Colors:
     - _Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighlightColHigh: {r: 1, g: 0.7463965, b: 0, a: 1}
+    - _HighlightColHigh: {r: 0.85800004, g: 0.63929415, b: 0, a: 1}
     - _HighlightColLow: {r: 0.13207549, g: 0.1282129, b: 0.11276256, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
