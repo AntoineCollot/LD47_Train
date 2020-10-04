@@ -40,7 +40,7 @@ public class BanditManager : MonoBehaviour
 
             //Make sure the train isn't on it and no bandits yet
             int triesCount = 0;
-            while(triesCount<100 && (tile.somethingOnRailState.IsOn || banditTiles.Exists(t=>t.coords.x== coords.x && t.coords.y== coords.y) || tile.hasHazardState.IsOn))
+            while(triesCount<100 && (tile.somethingOnRailState.IsOn || tile.hasHazardState.IsOn))
             {
                 coords = TileMap.Instance.GetRandomTileCoords();
                 tile = TileMap.Instance.GetTile(coords);
@@ -71,6 +71,7 @@ public class BanditManager : MonoBehaviour
         if (banditTiles.Exists(t => t.coords.x == headOfTrain.currentCoords.x && t.coords.y == headOfTrain.currentCoords.y))
         {
             GameManager.Instance.GameOver("Bandit");
+            SoundManager.Instance.Play(5);
         }
     }
 
@@ -89,5 +90,7 @@ public class BanditManager : MonoBehaviour
         GameObject model = Instantiate(banditPrefab, tile.transform.position, banditPrefab.transform.rotation, transform);
         isSpawningBandits = false;
         banditTiles.Add(new SpawnedModel(coords, model));
+
+        SoundManager.Instance.Play(5);
     }
 }

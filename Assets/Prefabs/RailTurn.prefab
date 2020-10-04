@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8480424437644849697}
   - component: {fileID: 3829759709577332759}
   - component: {fileID: 2506406856129085745}
+  - component: {fileID: 1341172046921787860}
   m_Layer: 11
   m_Name: RailTurn
   m_TagString: Untagged
@@ -152,3 +153,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.17
   m_Center: {x: 0.31, y: 0.1, z: 0.04}
+--- !u!114 &1341172046921787860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283462430596749322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f776e73dea533574bb5de8de2e23c0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMetalMat: {fileID: 2100000, guid: 27440496472dbba4e87d6aa41411b562, type: 2}
+  highlightWoodMat: {fileID: 2100000, guid: 1d7f03ce048402047810111e62ec12cc, type: 2}
+  lockedMetalMat: {fileID: 2100000, guid: 4a89048086f50c34cb7e278e8aa4b5e6, type: 2}
+  lockedWoodMat: {fileID: 2100000, guid: da2cef76df1422a4389dc5a22390c82e, type: 2}

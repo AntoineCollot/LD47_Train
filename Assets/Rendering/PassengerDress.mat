@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BanditSkin
+  m_Name: PassengerDress
   m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -85,7 +85,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
-    - _Color: {r: 0.6886792, g: 0.5099425, b: 0.41255784, a: 1}
+    - _Color: {r: 0.5849056, g: 0.33383763, b: 0.40798664, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

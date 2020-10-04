@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    [SerializeField] bool reverse;
+    [SerializeField] bool reverse = false;
     // Start is called before the first frame update
     void Start()
     {

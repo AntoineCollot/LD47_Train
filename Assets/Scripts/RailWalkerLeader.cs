@@ -5,7 +5,10 @@ using UnityEngine;
 public class RailWalkerLeader : RailWalker
 {
     [Header("Leading")]
-    [SerializeField] protected float timePerTile = 3;
+    [SerializeField] protected float timePerTileEasy = 2;
+    [SerializeField] protected float timePerTileHard = 0.75f;
+
+    float TimePerTime { get => Mathf.Lerp(timePerTileEasy, timePerTileHard, GameManager.difficulty); }
 
     private void Start()
     {
@@ -20,7 +23,7 @@ public class RailWalkerLeader : RailWalker
 
     IEnumerator WalkRailsC()
     {
-        while (true)
+        while (!GameManager.gameIsOver)
         {
             //Walk the current rail
             yield return StartCoroutine(WalkRail());
@@ -45,9 +48,9 @@ public class RailWalkerLeader : RailWalker
         TileRail tile = TileMap.Instance.GetTile(currentCoords);
         tile.somethingOnRailState.Add(isOnRailToken);
         goingReverse = tile.IsGoingReverse(entryDirection);
-        while (progress < 1)
+        while (progress < 1 && !GameManager.gameIsOver)
         {
-            progress += Time.deltaTime / timePerTile;
+            progress += Time.deltaTime / TimePerTime;
 
             yield return null;
         }

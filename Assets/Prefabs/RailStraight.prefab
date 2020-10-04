@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7306757558951365665}
   - component: {fileID: 5854304349464708370}
   - component: {fileID: 2356063108171469622}
+  - component: {fileID: 3858622126785488254}
   m_Layer: 11
   m_Name: RailStraight
   m_TagString: Untagged
@@ -122,5 +123,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.34957105, y: 0.15, z: 1.0002474}
+  m_Size: {x: 0.26, y: 0.15, z: 1.0002474}
   m_Center: {x: 0.000076942146, y: 0.1, z: 0.000107467175}
+--- !u!114 &3858622126785488254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961285337513202353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f776e73dea533574bb5de8de2e23c0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMetalMat: {fileID: 2100000, guid: 27440496472dbba4e87d6aa41411b562, type: 2}
+  highlightWoodMat: {fileID: 2100000, guid: 1d7f03ce048402047810111e62ec12cc, type: 2}
+  lockedMetalMat: {fileID: 2100000, guid: 4a89048086f50c34cb7e278e8aa4b5e6, type: 2}
+  lockedWoodMat: {fileID: 2100000, guid: da2cef76df1422a4389dc5a22390c82e, type: 2}

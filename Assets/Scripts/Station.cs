@@ -5,20 +5,25 @@ using UnityEngine.UI;
 
 public class Station : MonoBehaviour
 {
-    [SerializeField] float maxTimeBetweenTrain = 30;
+    [SerializeField] float maxTimeBetweenTrainEasy = 40;
+    [SerializeField] float maxTimeBetweenTrainHard = 20;
     float remainingTime;
     [SerializeField] Image clockImage = null;
+    Vector2Int coords;
+
+    public float MaxTimeBetweenTrain { get => Mathf.Lerp(maxTimeBetweenTrainEasy, maxTimeBetweenTrainHard, GameManager.difficulty); }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.FindGameObjectWithTag("Locomotive").GetComponent<RailWalkerLeader>().onNewCoords.AddListener(OnNewLocomotivePosition);
         remainingTime = 1;
+
+        SoundManager.Instance.Play(7);
     }
 
     private void Update()
     {
-        remainingTime -= Time.deltaTime / maxTimeBetweenTrain;
+        remainingTime -= Time.deltaTime / MaxTimeBetweenTrain;
 
         clockImage.fillAmount = remainingTime;
 
@@ -29,7 +34,13 @@ public class Station : MonoBehaviour
     void OnNewLocomotivePosition(Vector2Int coords)
     {
         //Hack to compare the station position to train's
-        if(Vector2.Distance(TileMap.Instance.GetTile(coords).transform.position, transform.position)<0.1f)
+        if(this.coords == coords)
             remainingTime =1;
+    }
+
+    public void Init(RailWalker train, Vector2Int coords)
+    {
+        this.coords = coords;
+        train.onNewCoords.AddListener(OnNewLocomotivePosition);
     }
 }

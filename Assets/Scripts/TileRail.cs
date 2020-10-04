@@ -144,6 +144,13 @@ public class TileRail : MonoBehaviour
     void Start()
     {
         lockChangeRailTypeState.Add(somethingOnRailState);
+        onTypeChanged.AddListener(OnTypeChanged);
+
+        //Register to rail manager if any rail on start up
+        if(type!=RailType.None)
+        {
+            RailManager.Instance.RegisterNewRail(this);
+        }
     }
 
     // Update is called once per frame
@@ -275,6 +282,10 @@ public class TileRail : MonoBehaviour
     {
         if(!lockChangeRailTypeState.IsOn)
             NextType();
+        else
+        {
+            SoundManager.Instance.Play(2);
+        }
     }
 
     /// <summary>
@@ -284,6 +295,10 @@ public class TileRail : MonoBehaviour
     {
         if (!lockChangeRailTypeState.IsOn)
             PreviousType();
+        else
+        {
+            SoundManager.Instance.Play(2);
+        }
     }
 
     /// <summary>
@@ -293,12 +308,26 @@ public class TileRail : MonoBehaviour
     {
         if (!lockChangeRailTypeState.IsOn)
             CancelType();
+        else
+        {
+            SoundManager.Instance.Play(2);
+        }
     }
 
     public void NextType()
     {
-        type = (RailType)(((int)type + 1)%(System.Enum.GetNames(typeof(RailType)).Length));
-        onTypeChanged.Invoke(type);
+        RailType newRailType = (RailType)(((int)type + 1) % (System.Enum.GetNames(typeof(RailType)).Length));
+        if (newRailType == RailType.None || !RailManager.Instance.MaxRailCountReached)
+        {
+            type = newRailType;
+            onTypeChanged.Invoke(type);
+
+            SoundManager.Instance.Play(0);
+        }
+        else
+        {
+            SoundManager.Instance.Play(2);
+        }
     }
 
     public void PreviousType()
@@ -306,12 +335,27 @@ public class TileRail : MonoBehaviour
         int newId = (int)type - 1;
         if (newId < 0)
             newId = System.Enum.GetNames(typeof(RailType)).Length;
-        type = (RailType)newId;
-        onTypeChanged.Invoke(type);
+        RailType newRailType = (RailType)newId;
+        if (newRailType == RailType.None || !RailManager.Instance.MaxRailCountReached)
+        {
+            type = newRailType;
+            onTypeChanged.Invoke(type);
+
+            SoundManager.Instance.Play(0);
+        }
+        else
+        {
+            SoundManager.Instance.Play(2);
+        }
     }
 
     public void CancelType()
     {
+        if (type == RailType.None)
+            return;
+
+        SoundManager.Instance.Play(1);
+
         type = RailType.None;
         onTypeChanged.Invoke(type);
     }
@@ -320,5 +364,21 @@ public class TileRail : MonoBehaviour
     {
         this.type = type;
         onTypeChanged.Invoke(this.type);
+    }
+
+    public void SetRandomType()
+    {
+        int randType = Random.Range(1, System.Enum.GetNames(typeof(RailType)).Length);
+        SetType((RailType)randType);
+    }
+
+    void OnTypeChanged(RailType type)
+    {
+        RailChangeSmoke.Instance.Play(transform.position,10);
+
+        if (type == RailType.None)
+            RailManager.Instance.RemoveRail(this);
+        else
+            RailManager.Instance.RegisterNewRail(this);
     }
 }

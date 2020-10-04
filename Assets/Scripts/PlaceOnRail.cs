@@ -15,6 +15,8 @@ public class PlaceOnRail : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (GameManager.gameIsOver)
+            return;
         TileRail tile = TileMap.Instance.GetTile(railWalker.currentCoords);
         Vector3 targetPosition = tile.GetPoint(railWalker.EffectiveProgress);
         targetPosition.y = transform.position.y;

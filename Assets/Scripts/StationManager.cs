@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class StationManager : MonoBehaviour
 {
+    [SerializeField] RailWalker headOfTrain = null;
+
     [Header("Station")]
     [SerializeField] GameObject stationPrefab = null;
     [SerializeField] float stationSpawnTime = 4;
-    [SerializeField] float minTimeBetweenStations = 35;
+    [SerializeField] float minTimeBetweenStationsEasy = 40;
+    [SerializeField] float minTimeBetweenStationHard = 20;
     float lastStationSpawnTime;
-    [SerializeField] float averageTimeBetweenStationsEasy = 30;
-    [SerializeField] float AverageTimeBetweenStationsHard = 10;
+    [SerializeField] float averageTimeBetweenStationsEasy = 40;
+    [SerializeField] float AverageTimeBetweenStationsHard = 20;
     List<SpawnedModel> stationTiles = new List<SpawnedModel>();
     bool isSpawningStation;
     EvolvingStateToken hasStationToken = new EvolvingStateToken(true);
@@ -18,6 +21,7 @@ public class StationManager : MonoBehaviour
     float AverageTimeBetweenStations { get => Mathf.Lerp(averageTimeBetweenStationsEasy, AverageTimeBetweenStationsHard, GameManager.difficulty); }
     float StationSpawnProb { get => Time.deltaTime / AverageTimeBetweenStations; }
     float MaxStationCount { get => 1; }
+    float MinTimeBetweenStations { get=> Mathf.Lerp(minTimeBetweenStationsEasy, minTimeBetweenStationHard, GameManager.difficulty)+5;}
 
     private void Start()
     {
@@ -28,7 +32,7 @@ public class StationManager : MonoBehaviour
     void Update()
     {
         //Check if we should spawn station
-        if (!isSpawningStation && lastStationSpawnTime + minTimeBetweenStations< Time.time && Random.Range(0f, 1f) <= StationSpawnProb)
+        if (!isSpawningStation && lastStationSpawnTime + MinTimeBetweenStations < Time.time && Random.Range(0f, 1f) <= StationSpawnProb)
         {
             SpawnStation();
         }
@@ -61,7 +65,7 @@ public class StationManager : MonoBehaviour
             Destroy(stationTiles[0].model);
             TileRail tileToClear = TileMap.Instance.GetTile(stationTiles[0].coords);
             tileToClear.hasHazardState.Remove(hasStationToken);
-            tileToClear.lockChangeRailTypeState.Add(hasStationToken);
+            tileToClear.lockChangeRailTypeState.Remove(hasStationToken);
 
             stationTiles.RemoveAt(0);
         }
@@ -85,6 +89,7 @@ public class StationManager : MonoBehaviour
 
         //Spawn the station
         GameObject model = Instantiate(stationPrefab, tile.transform.position, Quaternion.identity, transform);
+        model.GetComponent<Station>().Init(headOfTrain, coords);
         tile.lockChangeRailTypeState.Add(hasStationToken);
         //Set up the tile
         //Horizontal

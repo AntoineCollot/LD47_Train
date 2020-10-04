@@ -46,6 +46,8 @@ public class TileHighlight : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(HighlightLerp(0,1,highlightLerpTime));
         isHighlighted = true;
+
+        SoundManager.Instance.Play(6);
     }
 
     public void SetHighlightOff()
