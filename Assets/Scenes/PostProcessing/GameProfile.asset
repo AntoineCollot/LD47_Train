@@ -203,7 +203,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   externalLut:
     overrideState: 0
@@ -251,16 +251,16 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: 10
+    value: 12
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 1
-    value: 0.1
+    value: 0.2
   contrast:
     overrideState: 1
-    value: 15
+    value: 18
   mixerRedOutRedIn:
     overrideState: 0
     value: 100

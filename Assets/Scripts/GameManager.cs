@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         gameIsOver = false;
         scoreMultiplier = 1;
         difficulty = 0;
+        baseScore = 0;
     }
 
     // Update is called once per frame
